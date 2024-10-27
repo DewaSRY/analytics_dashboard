@@ -1,16 +1,5 @@
 import { ComponentProps, PropsWithChildren } from "react";
-import { Trip } from "@/model/trips.model";
-// import {
-//   MapContainer,
-//   TileLayer,
-//   Marker,
-//   Polyline,
-//   Tooltip,
-// } from "react-leaflet";
-
-// import { MapContainer } from 'react-leaflet/MapContainer'
-// import { TileLayer } from 'react-leaflet/TileLayer'
-// import { useMap } from 'react-leaflet/hooks'
+import { Trip, TripsResponse } from "@/model/trips.model";
 import {
   MapContainer,
   Marker,
@@ -21,21 +10,12 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-// import {
-//     MapContainer,
-//     TileLayer,
-//     useMap,
-// } from 'https://cdn.esm.sh/react-leaflet'
+import { useLoaderData } from "react-router-dom";
 
-interface MapComponentProps extends ComponentProps<"div">, PropsWithChildren {
-  trips: Trip[];
-}
+interface MapComponentProps extends ComponentProps<"div">, PropsWithChildren {}
 
-export default function MapComponent({
-  children,
-  trips,
-  ...resProps
-}: MapComponentProps) {
+export default function MapComponent({}: MapComponentProps) {
+  const { data: trips } = useLoaderData() as TripsResponse;
   return (
     <MapContainer
       center={[40.7128, -74.006]} // Centered on NYC
@@ -67,16 +47,5 @@ export default function MapComponent({
         </Polyline>
       ))}
     </MapContainer>
-    // <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-    //   <TileLayer
-    //     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    //     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    //   />
-    //   <Marker position={[51.505, -0.09]}>
-    //     <Popup>
-    //       A pretty CSS3 popup. <br /> Easily customizable.
-    //     </Popup>
-    //   </Marker>
-    // </MapContainer>
   );
 }
