@@ -10,25 +10,31 @@ db_name = 'yellow_taxi_trips'
 csv_file_path = './2014_Yellow_Taxi_Trip_Data_20241025_2.csv'  
 
 df = pd.read_csv(csv_file_path)
-
 def main():
+    # Create the database engine
     engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
 
-    # Read the CSV file in chunks
-    chunksize = 10_000  # Number of rows per chunk
-    current_row=0
+    chunksize = 10_000  
+    current_row = 0
+
     try:
         for chunk in pd.read_csv(csv_file_path, chunksize=chunksize):
-            chunk.to_sql(db_name, engine, if_exists='append',  index=False)
-            current_row= current_row + chunksize
-            print(f"Inserted a chunk of {len(chunk)} rows successfully. current row {current_row}")
-    except Exception as e:
+            if 'pickup_datetime' in chunk.columns:
+                chunk['pickup_datetime'] = pd.to_datetime(chunk['pickup_datetime'], errors='coerce')
+            if 'dropoff_datetime' in chunk.columns:
+                chunk['dropoff_datetime'] = pd.to_datetime(chunk['dropoff_datetime'], errors='coerce')
+
+            with engine.begin() as connection:
+                chunk.to_sql('yellow_taxi_trips', con=connection, if_exists='append', index=False)
+                current_row += len(chunk)
+                print(f"Inserted a chunk of {len(chunk)} rows successfully. Current row {current_row}")
+
+    except SQLAlchemyError as e:
         print(f"An error occurred: {e}")
+        engine.dispose()  # Close the engine to reset the connection
 
 if __name__ == "__main__":
     main()
-
-
 ###
 
 """ it will fail on '2860000'
