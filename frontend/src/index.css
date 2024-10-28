@@ -1,3 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem; /* Example radius value */
+    --background: #e3f2fd; /* Light blue */
+    --foreground: #1e88e5; /* Blue */
+    --card: #ffffff; /* White */
+    --card-foreground: #0d47a1; /* Dark blue */
+    --popover: #f5f5f5; /* Light gray */
+    --popover-foreground: #424242; /* Dark gray */
+    --primary: #1976d2; /* Primary blue */
+    --primary-foreground: #ffffff; /* White */
+    --secondary: #ff4081; /* Pink */
+    --secondary-foreground: #ffffff; /* White */
+    --muted: #e0e0e0; /* Light gray */
+    --muted-foreground: #424242; /* Dark gray */
+    --accent: #ff5722; /* Deep orange */
+    --accent-foreground: #ffffff; /* White */
+    --destructive: #f44336; /* Red */
+    --destructive-foreground: #ffffff; /* White */
+    --border: #bdbdbd; /* Gray */
+    --input: #f5f5f5; /* Light gray */
+    --ring: #e0e0e0; /* Light gray */
+    --chart-1: #42a5f5; /* Blue */
+    --chart-2: #66bb6a; /* Green */
+    --chart-3: #ffa726; /* Orange */
+    --chart-4: #ab47bc; /* Purple */
+    --chart-5: #ef5350; /* Red */
+  }
+  .dark {
+    --background: #1f1f1f; /* Background color */
+    --foreground: #fcfcfc; /* Foreground color */
+    --card: #1f1f1f; /* Card color */
+    --card-foreground: #fcfcfc; /* Card foreground color */
+    --popover: #1f1f1f; /* Popover color */
+    --popover-foreground: #fcfcfc; /* Popover foreground color */
+    --primary: #fcfcfc; /* Primary color */
+    --primary-foreground: #171717; /* Primary foreground color */
+    --secondary: #262626; /* Secondary color */
+    --secondary-foreground: #fcfcfc; /* Secondary foreground color */
+    --muted: #262626; /* Muted color */
+    --muted-foreground: #a3a3a3; /* Muted foreground color */
+    --accent: #262626; /* Accent color */
+    --accent-foreground: #fcfcfc; /* Accent foreground color */
+    --destructive: #a83d36; /* Destructive color */
+    --destructive-foreground: #fcfcfc; /* Destructive foreground color */
+    --border: #262626; /* Border color */
+    --input: #262626; /* Input color */
+    --ring: #d3d3d3; /* Ring color */
+    --chart-1: #007bff; /* Chart color 1 */
+    --chart-2: #008f8f; /* Chart color 2 */
+    --chart-3: #ffcc00; /* Chart color 3 */
+    --chart-4: #a56bb0; /* Chart color 4 */
+    --chart-5: #ff4d4d; /* Chart color 5 */
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
