@@ -1,27 +1,20 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
 import {TripsResponse} from "@/model/trips.model"
-export const tripLoader = async ({ params, request, context }: LoaderFunctionArgs) => {
-  // const { userId } = params;
-  console.log(request, context, params)
-  const filters = {
-    limit: 100,
-    page: 1,
-  }
+export const tripLoader = async ({ request }: LoaderFunctionArgs) => {
 
+  const url = new URL(request.url);
+  const queryParams = new URLSearchParams(url.search);
 
-  // Build the query string from filters
-  const queryString = new URLSearchParams(filters as any).toString();
-
-  const response = await fetch(`http://localhost:3000/yellow-taxi-trips?${queryString}`, {
+  const response = await fetch(`http://localhost:3000/trip?${queryParams}`, {
     method: 'GET', // Specify the HTTP method as GET
     headers: {
       'Content-Type': 'application/json', // Set the content type to JSON
     },
   });
 
-  if (!response.ok) throw new Error('User not found');
+  if (!response.ok) throw new Error('Trip');
   
   const data = await response.json() as TripsResponse;
-  console.log(data)
+
   return data 
 };

@@ -1,35 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --radius: 0.5rem; /* Example radius value */
-    --background: #e3f2fd; /* Light blue */
-    --foreground: #1e88e5; /* Blue */
-    --card: #ffffff; /* White */
-    --card-foreground: #0d47a1; /* Dark blue */
-    --popover: #f5f5f5; /* Light gray */
-    --popover-foreground: #424242; /* Dark gray */
-    --primary: #1976d2; /* Primary blue */
-    --primary-foreground: #ffffff; /* White */
-    --secondary: #ff4081; /* Pink */
-    --secondary-foreground: #ffffff; /* White */
-    --muted: #e0e0e0; /* Light gray */
-    --muted-foreground: #424242; /* Dark gray */
-    --accent: #ff5722; /* Deep orange */
-    --accent-foreground: #ffffff; /* White */
-    --destructive: #f44336; /* Red */
-    --destructive-foreground: #ffffff; /* White */
-    --border: #bdbdbd; /* Gray */
-    --input: #f5f5f5; /* Light gray */
-    --ring: #e0e0e0; /* Light gray */
-    --chart-1: #42a5f5; /* Blue */
-    --chart-2: #66bb6a; /* Green */
-    --chart-3: #ffa726; /* Orange */
-    --chart-4: #ab47bc; /* Purple */
-    --chart-5: #ef5350; /* Red */
-  }
-  .dark {
     --background: #1f1f1f; /* Background color */
     --foreground: #fcfcfc; /* Foreground color */
     --card: #1f1f1f; /* Card color */
@@ -54,6 +29,10 @@
     --chart-3: #ffcc00; /* Chart color 3 */
     --chart-4: #a56bb0; /* Chart color 4 */
     --chart-5: #ff4d4d; /* Chart color 5 */
+
+  
+
+    /* --mantine-color-body */
   }
 }
 @layer base {
@@ -63,4 +42,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+:root{
+    --mantine-color-body: #0c0b0b;
 }

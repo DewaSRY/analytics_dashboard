@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import MapComponent from "./components/MapComponent";
-
 import { tripLoader } from "./trip.loader";
+import Page from "./Page";
 import { Suspense } from "react";
 
 const router = createBrowserRouter([
@@ -10,7 +8,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <Suspense fallback={<div>Loading map...</div>}>
-        <MapComponent />
+        <Page />
       </Suspense>
     ),
     loader: tripLoader,
