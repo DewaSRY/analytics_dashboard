@@ -8,7 +8,13 @@ import "@mantine/dates/styles.css";
 import { createTheme, MantineProvider } from "@mantine/core";
 
 const theme = createTheme({
-  /** Put your mantine theme override here */
+  components: {
+    Portal: {
+      defaultProps: {
+        zIndex: 1500, // Customize the z-index here
+      },
+    },
+  },
 });
 
 createRoot(document.getElementById("root")!).render(

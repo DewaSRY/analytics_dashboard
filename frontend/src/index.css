@@ -30,8 +30,6 @@
     --chart-4: #a56bb0; /* Chart color 4 */
     --chart-5: #ff4d4d; /* Chart color 5 */
 
-  
-
     /* --mantine-color-body */
   }
 }
@@ -44,8 +42,8 @@
   }
 }
 
+:root {
+  --mantine-color-body: #0c0b0b;
 
-
-:root{
-    --mantine-color-body: #0c0b0b;
+  --affix-z-index: 1050;
 }

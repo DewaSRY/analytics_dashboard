@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { DatePicker } from "./ui/date-picker";
+import { DateRangePicker } from "./ui/date-range-picker";
 import { TripStatisticData } from "@/model/trip-statistic-data.model";
 import { ResponseWrapper } from "@/model/utils.model";
 import { AsyncSelect } from "./ui/async-select";
@@ -124,7 +124,7 @@ export default function FilterComponent() {
               record data
             </span>
           </Input>
-          <DatePicker
+          <DateRangePicker
             label="Date Range"
             onDateRangeSelected={(event) => {
               if (event.from) {
@@ -138,7 +138,7 @@ export default function FilterComponent() {
             maxDate={tripStatisticData.max_pickup_datetime}
           >
             <span>Specific times of Trip data</span>
-          </DatePicker>
+          </DateRangePicker>
           <AsyncSelect
             label="Pyment Type"
             placeholder="Entered, Trip pyment type"

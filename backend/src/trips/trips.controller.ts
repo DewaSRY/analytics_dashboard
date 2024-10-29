@@ -32,17 +32,16 @@ export class YellowTaxiTripController {
   async findAll(
     @Query() filterDto: TripFilterDto,
   ): Promise<PaginationDto<Trips>> {
-    
     return this.TripService.findAll(filterDto);
   }
 
-  @Post()
-  async create(@Body() createTripDto: CreateTripsDto): Promise<Trips> {
-    return this.TripService.create(createTripDto);
-  }
+  // @Post()
+  // async create(@Body() createTripDto: CreateTripsDto): Promise<Trips> {
+  //   return this.TripService.create(createTripDto);
+  // }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string): Promise<void> {
-    return this.TripService.remove(+id);
-  }
+  // @Delete(':id')
+  // async remove(@Param('id') id: string): Promise<void> {
+  //   return this.TripService.remove(+id);
+  // }
 }

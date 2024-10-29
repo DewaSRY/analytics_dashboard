@@ -24,7 +24,6 @@ export default function TripFilter() {
               Commission.
             </DrawerDescription>
           </DrawerHeader>
-
           <FilterComponent />
         </div>
       </DrawerContent>

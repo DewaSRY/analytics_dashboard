@@ -7,7 +7,7 @@ db_host = 'localhost'
 db_port = '5432'                    
 db_name = 'yellow_taxi_trips'        
 
-csv_file_path = './2014_Yellow_Taxi_Trip_Data_20241025_2.csv'  
+csv_file_path = './2014_Yellow_Taxi_Trip_Data_20241025_1.csv'  
 
 df = pd.read_csv(csv_file_path)
 def main():

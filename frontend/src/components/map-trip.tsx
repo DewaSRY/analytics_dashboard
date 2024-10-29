@@ -36,7 +36,7 @@ export default function MapComponent({}: MapComponentProps) {
       <MapContainer
         center={[40.7128, -74.006]}
         zoom={12}
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "100vh", width: "100%", zIndex: 50 }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -59,9 +59,24 @@ export default function MapComponent({}: MapComponentProps) {
             >
               <Tooltip direction="top" offset={[0, -10]} opacity={1}>
                 <div>
-                  <p>Fare: ${trip.fare_amount}</p>
-                  <p>Distance: {trip.trip_distance} miles</p>
-                  <p>Payment Type: {trip.payment_type}</p>
+                <p>ID: {trip.id}</p>
+                <p>Vendor ID: {trip.vendor_id}</p>
+                <p>Pickup Datetime: {new Date(trip.pickup_datetime).toLocaleString()}</p>
+                <p>Dropoff Datetime: {new Date(trip.dropoff_datetime).toLocaleString()}</p>
+                <p>Passenger Count: {trip.passenger_count}</p>
+                <p>Distance: {trip.trip_distance} miles</p>
+                <p>Pickup Location: ({trip.pickup_latitude}, {trip.pickup_longitude})</p>
+                <p>Dropoff Location: ({trip.dropoff_latitude}, {trip.dropoff_longitude})</p>
+                <p>Store and Forward Flag: {trip.store_and_fwd_flag || 'N/A'}</p>
+                <p>Payment Type: {trip.payment_type}</p>
+                <p>Fare: ${trip.fare_amount.toFixed(2)}</p>
+                <p>MTA Tax: ${trip.mta_tax.toFixed(2)}</p>
+                <p>Tip Amount: ${trip.tip_amount.toFixed(2)}</p>
+                <p>Tolls Amount: ${trip.tolls_amount.toFixed(2)}</p>
+                <p>Total Amount: ${trip.total_amount.toFixed(2)}</p>
+                <p>Imp Surcharge: ${trip.imp_surcharge.toFixed(2)}</p>
+                <p>Extra: {trip.extra !== null ? trip.extra : 'N/A'}</p>
+                <p>Rate Code: {trip.rate_code}</p>
                 </div>
               </Tooltip>
             </Polyline>
