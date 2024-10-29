@@ -36,7 +36,7 @@
      ```
    - Import the SQL dump file:
      ```bash
-     psql -U username -d taxi_trip_data -f database/taxi_data_dump.sql
+     psql -U username -d taxi_trip_data -f dump-yellow_taxi_trips-202410291323.sql
      ```
 
 5. **Start the backend server**:
