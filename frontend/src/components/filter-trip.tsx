@@ -93,6 +93,10 @@ export default function FilterComponent() {
     navigate({ pathname: location.pathname, search: searchParams.toString() });
   };
 
+  const handleClearSubmit = () => {
+    navigate({ pathname: location.pathname });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-auto-fit-350 gap-2">
@@ -201,9 +205,18 @@ export default function FilterComponent() {
         </div>
       </div>
 
-      <Button type="submit" className="py-2 px-6 my-4">
-        Filter
-      </Button>
+      <div className="flex gap-2 my-4">
+        <Button type="submit" className="py-2 px-6 my-4">
+          Filter
+        </Button>
+        <Button
+          type="button"
+          className="py-2 px-6 my-4"
+          onClick={handleClearSubmit}
+        >
+          Clear Filter
+        </Button>
+      </div>
     </form>
   );
 }

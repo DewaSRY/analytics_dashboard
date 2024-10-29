@@ -1,20 +1,18 @@
-import React from "react";
 import { ComponentProps, PropsWithChildren } from "react";
 
-import { AppShell, Burger } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { AppShell } from "@mantine/core";
 
-import MapComponent from "./components/MapComponent";
-import DrowerFilter from "@/components/DrowerFilter";
+import MapComponent from "./components/map-trip";
+import TripFilter from "@/components/trip-filter";
+import Context from "@/provider/context";
+
 interface PageProps extends ComponentProps<"div">, PropsWithChildren {}
 
-export default function Page({ children, ...resProps }: PageProps) {
-  const [opened, { toggle }] = useDisclosure();
+export default function Page({}: PageProps) {
   return (
-    <React.Fragment>
-      <AppShell header={{ height: 60 }} padding="md">
+    <Context>
+      <AppShell header={{ height: 40 }} padding="md">
         <AppShell.Header>
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <div>Logo</div>
         </AppShell.Header>
 
@@ -24,9 +22,11 @@ export default function Page({ children, ...resProps }: PageProps) {
           </main>
         </AppShell.Main>
         <section className="fixed bottom-2 left-6 z-[1000]">
-          <DrowerFilter />
+          <div>
+            <TripFilter />
+          </div>
         </section>
       </AppShell>
-    </React.Fragment>
+    </Context>
   );
 }

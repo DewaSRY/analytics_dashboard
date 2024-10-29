@@ -1,21 +1,36 @@
 import { ComponentProps, PropsWithChildren } from "react";
-import { Trip, TripsResponse } from "@/model/trips.model";
+import { TripsResponse } from "@/model/trips.model";
 import {
   MapContainer,
-  Marker,
   Polyline,
-  Popup,
   TileLayer,
   Tooltip,
+  useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-
+import { usecontext } from "@/provider/context";
 import { useLoaderData } from "react-router-dom";
 
 interface MapComponentProps extends ComponentProps<"div">, PropsWithChildren {}
 
 export default function MapComponent({}: MapComponentProps) {
   const { data: trips } = useLoaderData() as TripsResponse;
+  const { setDropoff, setPickup, dropoff, pickup, isStoreNewCordinate } =
+    usecontext();
+
+  const MapClickHandler = () => {
+    useMapEvents({
+      click: (event) => {
+        if (!pickup) {
+          setPickup([event.latlng.lat, event.latlng.lng]);
+        } else if (!dropoff) {
+          setDropoff([event.latlng.lat, event.latlng.lng]);
+        }
+      },
+    });
+    return null;
+  };
+
   return (
     <>
       <MapContainer
@@ -27,6 +42,8 @@ export default function MapComponent({}: MapComponentProps) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         />
+
+        {isStoreNewCordinate && <MapClickHandler />}
 
         {trips.length > 0 &&
           trips.map((trip) => (
