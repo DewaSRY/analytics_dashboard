@@ -1,73 +1,124 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+Here's an updated README without the cloning instructions:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+---
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Taxi Trip Data API Backend
 
-## Description
+This backend API provides endpoints for fetching and filtering NYC taxi trip data, including trip routes, fare amounts, trip times, and payment types. Built with NestJS, it supports efficient querying of large datasets stored in a PostgreSQL database with optional PostGIS for spatial data handling.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Table of Contents
 
-## Installation
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Folder Structure](#folder-structure)
+- [Setup Instructions](#setup-instructions)
+- [Environment Variables](#environment-variables)
+- [API Endpoints](#api-endpoints)
+- [Database Setup](#database-setup)
+- [Notes](#notes)
 
-```bash
-$ npm install
+---
+
+## Features
+
+- Retrieves trip data with details like fare, time, distance, and payment type.
+- Provides filtering options based on various parameters for dynamic data exploration.
+- Optimized for handling large datasets with PostgreSQL.
+
+## Tech Stack
+
+- **Backend Framework**: NestJS
+- **Database**: PostgreSQL with optional PostGIS extension
+
+## Folder Structure
+
+```plaintext
+src
+├── entities            # Database entities for ORM mapping
+├── filter-options      # Modules for filter options (e.g., payment type, fare ranges)
+├── model               # Data models and schemas
+├── request             # Request DTOs (Data Transfer Objects) for API validation
+├── response            # Response DTOs for structuring API responses
+└── trips               # Trip-related logic and services
 ```
 
-## Running the app
+---
 
-```bash
-# development
-$ npm run start
+## Setup Instructions
 
-# watch mode
-$ npm run start:dev
+### Prerequisites
 
-# production mode
-$ npm run start:prod
+- **Node.js** and **npm**
+- **PostgreSQL** (with optional PostGIS extension)
+
+### Installation
+
+1. **Navigate to the backend folder** and install dependencies:
+
+   ```bash
+   cd backend
+   npm install
+   ```
+
+2. **Configure environment variables** (see [Environment Variables](#environment-variables) below).
+
+3. **Start the server**:
+
+   ```bash
+   npm run start:dev
+   ```
+
+   The backend API server will be running on `http://localhost:3000`.
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the backend root directory with the following environment variables:
+
+```env
+DATABASE_URL=postgres://username:password@localhost:5432/taxi_trip_data
+PORT=3000
 ```
 
-## Test
+- `DATABASE_URL`: Connection string for PostgreSQL database.
+- `PORT`: Port number for the backend server (default is `3000`).
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## API Endpoints
 
-# test coverage
-$ npm run test:cov
-```
+- **GET /trip** - Retrieves all trip data.
+- **GET /filter-options/payment-types** - Retrieves available payment types for filtering.
+- **GET /filter-options/fare-amounts** - Retrieves fare ranges for filtering.
 
-## Support
+For API testing and documentation, you can access Swagger UI at `http://localhost:3000/api` after the server is running.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## Database Setup
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. **Create the database** in PostgreSQL:
 
-## License
+   ```sql
+   CREATE DATABASE taxi_trip_data;
+   ```
 
-Nest is [MIT licensed](LICENSE).
+2. **Import the SQL dump** provided in the `database/` folder:
+
+   ```bash
+   psql -U username -d taxi_trip_data -f database/taxi_data_dump.sql
+   ```
+
+   Replace `username` with your PostgreSQL username.
+
+---
+
+## Notes
+
+- The backend API is optimized for large datasets and efficient querying.
+- The optional PostGIS extension can be used for spatial data queries if required.
+
+---
+
+This README provides a setup and overview for the backend API, designed for handling and filtering NYC taxi trip data efficiently.
