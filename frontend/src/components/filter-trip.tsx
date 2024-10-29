@@ -8,6 +8,8 @@ import { TripStatisticData } from "@/model/trip-statistic-data.model";
 import { ResponseWrapper } from "@/model/utils.model";
 import { AsyncSelect } from "./ui/async-select";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 export const TripStatisticDefaultData: TripStatisticData = {
   minfare: 0,
   maxfare: 500,
@@ -19,9 +21,7 @@ export const TripStatisticDefaultData: TripStatisticData = {
 };
 
 async function fetchTripStatistic() {
-  const response = await fetch(
-    "http://localhost:3000/filter-options/statistic-data"
-  );
+  const response = await fetch(`${VITE_API_URL}/filter-options/statistic-data`);
   const data = (await response.json()) as ResponseWrapper<TripStatisticData>;
   return {
     data: {
@@ -142,7 +142,7 @@ export default function FilterComponent() {
           <AsyncSelect
             label="Pyment Type"
             placeholder="Entered, Trip pyment type"
-            url="http://localhost:3000/filter-options/payment-types"
+            url={`${VITE_API_URL}/filter-options/payment-types`}
             onSelect={(e) => {
               setValue("paymentType", e);
             }}

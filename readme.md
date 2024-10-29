@@ -5,6 +5,19 @@
 - **Node.js** and **npm**
 - **PostgreSQL** with **PostGIS** extension (optional for spatial data)
 
+# local setup
+
+### data setup
+
+there is two way to setup data
+
+1. restore the dumpdata use the pgadmin, (in my local and on the damp at lest contain 2.8 million record)
+2. insert the data by run the python scrip, just unzip the cvs and put it on root ow python working directory. then run the command `poetry run python .\main.py`. when i run it on first time i get 2.8 million record but, when i run it for my postgres in cloud, ('i Have problem to insert the dump so i use the script') i am olny get 38.000 record
+
+### simple setup
+
+if only want to know how the app look like just run the frontend and use the railway url, it's will work correctly
+
 ## Steps
 
 ### 1. Backend Setup
