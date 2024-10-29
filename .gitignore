@@ -298,5 +298,9 @@ cython_debug/
 
 
 database/*.csv
+database/*.yml
 
 database/2014_Yellow_Taxi_Trip_Data_20241025_2.csv
+
+docker-compose.yml
+*.sql

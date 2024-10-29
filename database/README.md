@@ -1,5 +1,7 @@
 ## Purpose of the Database Folder
 
+this source code use to insert the record from the scv to the database. it's realy help for kikoff the data and help if the dump just not working.
+
 The **database** folder contains a Python script that automates the import of records from a CSV file into a PostgreSQL database. This folder serves to:
 
 - **Facilitate Data Import**: Streamlines the process of transferring large datasets from CSV files into the PostgreSQL database, making data management easier.
