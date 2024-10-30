@@ -1,8 +1,12 @@
 # Project Setup Guide
 
-![tumbnail](./docs//tumbnail.png "Tumbnail")
+![tumbnail](./docs/tumbnail.png "Tumbnail")
 
 - [The app link](https://quiet-bubblegum-fa95a2.netlify.app/)
+
+![api docs](./docs/api-docs.png "Tumbnail")
+
+- [Api Documentation](https://analyticsdashboard-production.up.railway.app/docs)
 
 ## Prerequisites
 
