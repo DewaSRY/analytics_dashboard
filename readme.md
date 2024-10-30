@@ -1,5 +1,9 @@
 # Project Setup Guide
 
+![tumbnail](./docs//tumbnail.png "Tumbnail")
+
+- [The app link](https://quiet-bubblegum-fa95a2.netlify.app/)
+
 ## Prerequisites
 
 - **Node.js** and **npm**
