@@ -3,12 +3,3 @@ from="/*"
 to="/index.html"
 status=200
 
-[[headers]]
-for = "/*"
-  [headers.values]
-  Content-Type = "text/html; charset=UTF-8"
-
-[[headers]]
-for = "/static/*"
-  [headers.values]
-  Content-Type = "text/javascript"
